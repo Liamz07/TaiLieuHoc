@@ -1,4 +1,4 @@
-# Tài liệu tổng hợp: Lập trình Socket với Windows Forms trong C
+# Lập trình Socket với Windows Forms trong C#
 
 > Tài liệu học từ nền tảng đến triển khai ứng dụng Client--Server bằng
 > C# Windows Forms. Ví dụ sử dụng `TcpListener`, `TcpClient`,
