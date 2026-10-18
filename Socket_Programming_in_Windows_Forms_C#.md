@@ -72,7 +72,7 @@ lệnh, file hay loại dữ liệu nào.
 ### 1.3. Luồng giao tiếp điển hình
 
 1.  Server tạo socket hoặc `TcpListener`.
-2.  Server bind vào địa chỉ IP và port.
+2.  Server gắn socket vào địa chỉ IP và port.
 3.  Server bắt đầu lắng nghe.
 4.  Client kết nối đến IP và port của Server.
 5.  Hai bên gửi và nhận dữ liệu.
