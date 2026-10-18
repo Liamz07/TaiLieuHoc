@@ -74,7 +74,7 @@ lệnh, file hay loại dữ liệu nào.
 1.  Server tạo socket hoặc `TcpListener`.
 2.  Server gắn socket vào địa chỉ IP và port.
 3.  Server bắt đầu lắng nghe.
-4.  Client kết nối đến IP và port của Server.
+4.  Client yêu cầu thiết lập kết nối TCP đến Socket đang lắng nghe của Server thông qua địa chỉ IP và port của Server.
 5.  Hai bên gửi và nhận dữ liệu.
 6.  Một bên ngắt kết nối hoặc xảy ra lỗi.
 7.  Hai bên giải phóng tài nguyên.
