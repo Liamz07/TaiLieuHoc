@@ -184,14 +184,14 @@ telemetry. Nếu cần độ tin cậy, ứng dụng phải tự xây dựng cơ
 
 ### 3.3. So sánh
 
-  Tiêu chí               TCP                   UDP
-  ---------------------- --------------------- -----------------------------------
-  Kiểu giao tiếp         Hướng kết nối         Datagram
-  Bảo đảm thứ tự         Có trong luồng byte   Không
-  Tự truyền lại          Có                    Không
-  Ranh giới thông điệp   Không bảo toàn        Mỗi datagram là một đơn vị
-  Overhead               Thường cao hơn        Thường thấp hơn
-  Ví dụ                  Chat, truyền file     Discovery, dữ liệu thời gian thực
+| Tiêu chí | TCP | UDP |
+| :--- | :--- | :--- |
+| Kiểu giao tiếp | Hướng kết nối | Datagram |
+| Bảo đảm thứ tự | Có trong luồng byte | Không |
+| Tự truyền lại | Có | Không |
+| Ranh giới thông điệp | Không bảo toàn | Mỗi datagram là một đơn vị |
+| Overhead | Thường cao hơn | Thường thấp hơn |
+| Ví dụ | Chat, truyền file | Discovery, dữ liệu thời gian thực |
 
 ### 3.4. Chọn giao thức nào?
 
@@ -297,7 +297,7 @@ Lớp mức thấp hơn, cho phép điều khiển chi tiết hơn. Có thể d�
 `ProtocolType.Udp`).
 
 Dùng `Socket` khi cần kiểm soát chi tiết endpoint, tùy chọn socket hoặc
-kiến trúc đặc biệt. Với bài tập Client--Server đầu tiên,
+kiến trúc đặc biệt. Với bài tập Client-Server đầu tiên,
 `TcpClient`/`TcpListener` thường dễ học hơn.
 
 ### 5.5. Các kiểu liên quan
@@ -337,19 +337,24 @@ TCP chỉ truyền một luồng byte. Server có thể đọc được:
 Do đó, không được giả định một lần `ReadAsync` tương ứng đúng một lần
 `WriteAsync`.
 
-### 6.2. Cách 1: kết thúc bằng ký tự xuống dòng
+### 6.2. Cách 1: Kết thúc bằng ký tự xuống dòng
 
 Ví dụ mỗi thông điệp là một dòng UTF-8 và kết thúc bằng `\n`. Có thể
 dùng `StreamReader.ReadLineAsync()` và `StreamWriter.WriteLineAsync()`.
 
-Ưu điểm: - Dễ hiểu và dễ kiểm tra. - Phù hợp với thông điệp văn bản đơn
+Ưu điểm: 
+- Dễ hiểu và dễ kiểm tra.
+- Phù hợp với thông điệp văn bản đơn
 giản.
 
-Nhược điểm: - Payload không được chứa newline thô nếu không có cơ chế
-escape. - Cần giới hạn độ dài dòng để tránh tiêu thụ bộ nhớ không giới
-hạn. - Cả hai bên phải thống nhất encoding và quy tắc xuống dòng.
+Nhược điểm: 
+- Payload không được chứa newline thô nếu không có cơ chế
+escape.
+- Cần giới hạn độ dài dòng để tránh tiêu thụ bộ nhớ không giới
+hạn.
+- Cả hai bên phải thống nhất encoding và quy tắc xuống dòng.
 
-### 6.3. Cách 2: tiền tố độ dài
+### 6.3. Cách 2: Tiền tố độ dài
 
 Một định dạng thường dùng:
 
@@ -360,12 +365,14 @@ Một định dạng thường dùng:
 Ví dụ: 4 byte đầu biểu diễn số byte của payload, tiếp theo là đúng số
 byte đó. Hai bên phải thống nhất thứ tự byte, chẳng hạn big-endian.
 
-Ưu điểm: - Hỗ trợ payload nhị phân và thông điệp có newline. - Có thể
-xác định chính xác ranh giới thông điệp.
+Ưu điểm: 
+- Hỗ trợ payload nhị phân và thông điệp có newline.
+- Có thể xác định chính xác ranh giới thông điệp.
 
-Nhược điểm: - Phải đọc đủ phần header và đủ số byte payload. - Phải xác
-thực độ dài tối đa trước khi cấp phát bộ nhớ. - Cần thống nhất định dạng
-header giữa Client và Server.
+Nhược điểm: 
+- Phải đọc đủ phần header và đủ số byte payload.
+- Phải xác thực độ dài tối đa trước khi cấp phát bộ nhớ.
+- Cần thống nhất định dạng header giữa Client và Server.
 
 ### 6.4. Quy tắc giao thức nên ghi rõ
 
@@ -946,7 +953,7 @@ cũ, thường dùng overload mảng byte.
 Đoạn code trên chỉ gửi byte. Nó không cho biết phía nhận cần đọc bao
 nhiêu byte để hoàn tất thông điệp.
 
-### 12.3. JSON trong C
+### 12.3. JSON trong C#
 
 Với `System.Text.Json` trên .NET hiện đại:
 
@@ -987,7 +994,7 @@ dẫn lưu.
 
 ------------------------------------------------------------------------
 
-## 13. Ví dụ ứng dụng chat nhiều Client: thiết kế tổng thể
+## 13. Ví dụ ứng dụng chat nhiều Client: Thiết kế tổng thể
 
 ### 13.1. Các loại thông điệp
 
@@ -1077,7 +1084,7 @@ ClientForm cập nhật UI
 
 ------------------------------------------------------------------------
 
-## 14. Ví dụ truyền file: quy trình và quy tắc
+## 14. Ví dụ truyền file: Quy trình và quy tắc
 
 Truyền file qua TCP cần một giao thức có cấu trúc. Một quy trình khả
 thi:
@@ -1143,9 +1150,12 @@ Nguyên nhân có thể:
 -   Địa chỉ bind không tồn tại trên máy.
 -   Cấu hình IPv4/IPv6 không phù hợp.
 
-Cách kiểm tra: - Xác nhận port nhập vào hợp lệ. - Thử port khác. - Kiểm
-tra tiến trình đang sử dụng port. - Kiểm tra địa chỉ bind. - Xem thông
-tin exception và log.
+Cách kiểm tra: 
+- Xác nhận port nhập vào hợp lệ.
+- Thử port khác.
+- Kiểm tra tiến trình đang sử dụng port.
+- Kiểm tra địa chỉ bind.
+- Xem thông tin exception và log.
 
 ### 15.3. Client không kết nối được
 
@@ -1164,10 +1174,13 @@ Kiểm tra theo thứ tự:
 Nguyên nhân phổ biến là chương trình đang chờ thông điệp nhưng phía gửi
 không gửi dấu phân cách hoặc chưa gửi đủ payload.
 
-Cách giải quyết: - Xác định giao thức framing rõ ràng. - Đảm bảo phía
-gửi tuân thủ framing. - Đặt timeout/deadline. - Cho phép hủy thao tác. -
-Xử lý EOF và ngắt kết nối. - Không giả định một lần đọc nhận toàn bộ
-thông điệp.
+Cách giải quyết: 
+- Xác định giao thức framing rõ ràng.
+- Đảm bảo phía gửi tuân thủ framing.
+- Đặt timeout/deadline.
+- Cho phép hủy thao tác. 
+- Xử lý EOF và ngắt kết nối.
+- Không giả định một lần đọc nhận toàn bộ thông điệp.
 
 ### 15.5. Client đóng đột ngột
 
@@ -1394,16 +1407,22 @@ khởi động.
 
 **Bài 1: Client gửi một chuỗi, Server phản hồi**
 
-Yêu cầu: - Nhập host và port. - Server nhận một dòng. - Server trả về
-nội dung đã nhận. - Xử lý lỗi khi Server chưa chạy.
+Yêu cầu: 
+- Nhập host và port.
+- Server nhận một dòng.
+- Server trả về nội dung đã nhận.
+- Xử lý lỗi khi Server chưa chạy.
 
 Kiến thức: `TcpListener`, `TcpClient`, `NetworkStream`, framing dòng,
 `async/await`.
 
 **Bài 2: Hiển thị trạng thái kết nối**
 
-Yêu cầu: - Nút Connect/Disconnect. - Hiển thị trạng thái rõ ràng. -
-Không cho gửi khi chưa kết nối. - Dọn dẹp kết nối khi đóng Form.
+Yêu cầu: 
+- Nút Connect/Disconnect.
+- Hiển thị trạng thái rõ ràng.
+- Không cho gửi khi chưa kết nối.
+- Dọn dẹp kết nối khi đóng Form.
 
 Kiến thức: vòng đời kết nối, trạng thái UI, `Dispose`.
 
@@ -1411,24 +1430,33 @@ Kiến thức: vòng đời kết nối, trạng thái UI, `Dispose`.
 
 **Bài 3: Chat hai chiều**
 
-Yêu cầu: - Có vòng nhận chạy liên tục. - Gửi và nhận độc lập. - Hiển thị
-timestamp. - Hỗ trợ tiếng Việt. - Không làm treo giao diện.
+Yêu cầu: 
+- Có vòng nhận chạy liên tục.
+- Gửi và nhận độc lập.
+- Hiển thị timestamp.
+- Hỗ trợ tiếng Việt.
+- Không làm treo giao diện.
 
 Kiến thức: vòng nhận bất đồng bộ, thread UI, encoding.
 
 **Bài 4: Chat nhiều Client**
 
-Yêu cầu: - Server nhận nhiều kết nối. - Client gửi tin đến Server. -
-Server broadcast đến các Client. - Client rời đi không làm dừng
-Server. - Có danh sách người dùng đang kết nối.
+Yêu cầu: 
+- Server nhận nhiều kết nối.
+- Client gửi tin đến Server.
+- Server broadcast đến các Client.
+- Client rời đi không làm dừng Server.
+- Có danh sách người dùng đang kết nối.
 
 Kiến thức: quản lý phiên, đồng bộ hóa, broadcast, xử lý lỗi.
 
 **Bài 5: Gửi JSON**
 
-Yêu cầu: - Định nghĩa class thông điệp. - Có `type`, `sender`,
-`content`. - Serialize/deserialize JSON. - Xử lý thông điệp sai cấu
-trúc.
+Yêu cầu: 
+- Định nghĩa class thông điệp.
+- Có `type`, `sender`, `content`.
+- Serialize/deserialize JSON.
+- Xử lý thông điệp sai cấu trúc.
 
 Kiến thức: protocol, serialization, validation.
 
@@ -1436,16 +1464,22 @@ Kiến thức: protocol, serialization, validation.
 
 **Bài 6: Gửi file**
 
-Yêu cầu: - Hiển thị tên và kích thước file. - Có thanh tiến trình. - Hủy
-truyền file. - Kiểm tra kích thước và kết quả cuối. - Không ghi file ra
-ngoài thư mục cho phép.
+Yêu cầu: 
+- Hiển thị tên và kích thước file.
+- Có thanh tiến trình.
+- Hủy truyền file.
+- Kiểm tra kích thước và kết quả cuối.
+- Không ghi file ra ngoài thư mục cho phép.
 
 Kiến thức: truyền nhị phân, framing, stream, kiểm soát tài nguyên.
 
 **Bài 7: Phòng chat**
 
-Yêu cầu: - Tạo và tham gia phòng. - Chỉ phát tin trong cùng phòng. - Có
-thông báo vào/rời phòng. - Server kiểm tra quyền và tên phòng.
+Yêu cầu: 
+- Tạo và tham gia phòng.
+- Chỉ phát tin trong cùng phòng.
+- Có thông báo vào/rời phòng.
+- Server kiểm tra quyền và tên phòng.
 
 Kiến thức: logic nghiệp vụ, trạng thái phiên, protocol.
 
@@ -1453,20 +1487,29 @@ Kiến thức: logic nghiệp vụ, trạng thái phiên, protocol.
 
 **Bài 8: Chat có đăng nhập**
 
-Yêu cầu: - Tài khoản và mật khẩu được quản lý an toàn. - Xác thực trên
-Server. - Phân quyền. - Giới hạn thử đăng nhập. - Không gửi mật khẩu
-hoặc token trong log.
+Yêu cầu: 
+- Tài khoản và mật khẩu được quản lý an toàn.
+- Xác thực trên Server.
+- Phân quyền.
+- Giới hạn thử đăng nhập.
+- Không gửi mật khẩu hoặc token trong log.
 
 **Bài 9: Kết nối TLS**
 
-Yêu cầu: - Bảo vệ dữ liệu trên đường truyền. - Kiểm tra chứng chỉ
-Server. - Xử lý chứng chỉ hết hạn hoặc không hợp lệ. - Tài liệu hóa cấu
-hình triển khai.
+Yêu cầu: 
+- Bảo vệ dữ liệu trên đường truyền.
+- Kiểm tra chứng chỉ Server.
+- Xử lý chứng chỉ hết hạn hoặc không hợp lệ.
+- Tài liệu hóa cấu hình triển khai.
 
 **Bài 10: Server ổn định**
 
-Yêu cầu: - Giới hạn số Client. - Timeout và hủy tác vụ. - Logging. -
-Kiểm thử tải và Client gửi dữ liệu bất thường. - Đóng Server an toàn.
+Yêu cầu: 
+- Giới hạn số Client.
+- Timeout và hủy tác vụ.
+- Logging.
+- Kiểm thử tải và Client gửi dữ liệu bất thường.
+- Đóng Server an toàn.
 
 ------------------------------------------------------------------------
 
@@ -1525,23 +1568,23 @@ Kiểm thử tải và Client gửi dữ liệu bất thường. - Đóng Server
 
 ## 22. Bảng tra cứu nhanh
 
-  Thành phần               Vai trò
-  ------------------------ ---------------------------------------------
-  `TcpListener`            Server lắng nghe và chấp nhận TCP Client
-  `TcpClient`              Đại diện kết nối TCP
-  `NetworkStream`          Đọc/ghi byte qua kết nối
-  `Socket`                 API socket mức thấp
-  `IPAddress`              Địa chỉ IP
-  `IPEndPoint`             Địa chỉ IP kết hợp port
-  `Dns`                    Phân giải tên máy
-  `Encoding.UTF8`          Chuyển chuỗi thành byte UTF-8 và ngược lại
-  `StreamReader`           Đọc văn bản từ stream
-  `StreamWriter`           Ghi văn bản vào stream
-  `CancellationToken`      Truyền yêu cầu hủy
-  `Task`                   Đại diện công việc bất đồng bộ
-  `SemaphoreSlim`          Đồng bộ hóa thao tác, ví dụ tuần tự hóa gửi
-  `ConcurrentDictionary`   Cấu trúc từ điển hỗ trợ truy cập đồng thời
-  `SslStream`              Lớp stream hỗ trợ TLS
+| Thành phần | Vai trò |
+| :--- | :--- |
+| `TcpListener` | Server lắng nghe và chấp nhận TCP Client |
+| `TcpClient` | Đại diện kết nối TCP |
+| `NetworkStream` | Đọc/ghi byte qua kết nối |
+| `Socket` | API socket mức thấp |
+| `IPAddress` | Địa chỉ IP |
+| `IPEndPoint` | Địa chỉ IP kết hợp port |
+| `Dns` | Phân giải tên máy |
+| `Encoding.UTF8` | Chuyển chuỗi thành byte UTF-8 và ngược lại |
+| `StreamReader` | Đọc văn bản từ stream |
+| `StreamWriter` | Ghi văn bản vào stream |
+| `CancellationToken` | Truyền yêu cầu hủy |
+| `Task` | Đại diện công việc bất đồng bộ |
+| `SemaphoreSlim` | Đồng bộ hóa thao tác, ví dụ tuần tự hóa gửi |
+| `ConcurrentDictionary` | Cấu trúc từ điển hỗ trợ truy cập đồng thời |
+| `SslStream` | Lớp stream hỗ trợ TLS |
 
 ## 23. Thứ tự học đề xuất
 
